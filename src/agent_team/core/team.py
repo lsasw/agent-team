@@ -6,8 +6,8 @@
 """
 
 from openai import OpenAI
-from agent import Agent
-from tools import ToolRegistry, create_default_registry
+from agent_team.core.agent import Agent
+from agent_team.core.tools import ToolRegistry, create_default_registry
 
 
 class TeamOrchestrator:

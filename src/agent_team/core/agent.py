@@ -12,7 +12,7 @@ ReAct Agent 核心 — LLM 驱动的「思考 → 行动 → 观察」循环。
 import json
 import re
 from openai import OpenAI
-from tools import ToolRegistry
+from agent_team.core.tools import ToolRegistry
 
 
 class Agent:

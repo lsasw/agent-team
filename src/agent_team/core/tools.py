@@ -7,9 +7,12 @@
 
 import json
 import os
+from pathlib import Path
 from typing import Callable, Any
 
-WORKSPACE = os.path.join(os.path.dirname(__file__), "workspace")
+# 项目根目录 (src/agent_team/core/tools.py → 向上 4 级)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+WORKSPACE = str(PROJECT_ROOT / "workspace")
 
 
 def ensure_workspace():

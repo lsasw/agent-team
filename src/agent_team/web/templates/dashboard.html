@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}仪表盘 — Agent Team{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>👋 欢迎回来，{{ user.username }}！</h1>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">👤 用户信息</div>
+            <div class="card-body">
+                <table class="info-table">
+                    <tr><td>ID</td><td>{{ user.id }}</td></tr>
+                    <tr><td>用户名</td><td>{{ user.username }}</td></tr>
+                    <tr><td>邮箱</td><td>{{ user.email }}</td></tr>
+                    <tr><td>注册时间</td><td>{{ user.created_at.strftime('%Y-%m-%d %H:%M') }}</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">🔐 安全提示</div>
+            <div class="card-body">
+                <ul class="tips">
+                    <li>密码通过 <strong>bcrypt</strong> 哈希存储，数据库不存明文</li>
+                    <li>登录态通过 <strong>JWT</strong> 维护，存储在 httpOnly Cookie 中</li>
+                    <li>Token 过期时间为 1 小时</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">📊 技术栈</div>
+            <div class="card-body">
+                <div class="tech-stack">
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">SQLAlchemy 2.0</span>
+                    <span class="tag">SQLite</span>
+                    <span class="tag">Jinja2</span>
+                    <span class="tag">JWT</span>
+                    <span class="tag">bcrypt</span>
+                    <span class="tag">Pydantic v2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="/auth/logout" class="btn btn-primary">登出</a>
+    </div>
+</div>
+{% endblock %}

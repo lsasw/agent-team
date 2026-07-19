@@ -9,9 +9,13 @@
 
 import os
 import json
+from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
-from team import TeamOrchestrator
+from agent_team.core.team import TeamOrchestrator
+
+# 项目根目录 (src/agent_team/cli.py → 向上 3 级)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 
 def main():
@@ -53,6 +57,7 @@ def main():
     )
 
     result = team.run(requirement)
+    # TeamOrchestrator.run(team, requirement)  # 输出结果
 
     # ── 输出结果 ──
     print("\n\n" + "=" * 60)
@@ -72,15 +77,15 @@ def main():
         print(f"\n🔍 测试员审查:\n{it['review'][:800]}")
 
     # 保存完整结果
-    output_dir = os.path.join(os.path.dirname(__file__), "output")
-    os.makedirs(output_dir, exist_ok=True)
-    with open(os.path.join(output_dir, "result.json"), "w", encoding="utf-8") as f:
+    output_dir = PROJECT_ROOT / "output"
+    output_dir.mkdir(exist_ok=True)
+    with open(output_dir / "result.json", "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
     print(f"\n📁 完整结果已保存到 output/result.json")
 
     # 检查实际代码文件
-    workspace = os.path.join(os.path.dirname(__file__), "workspace")
-    if os.path.exists(workspace):
+    workspace = PROJECT_ROOT / "workspace"
+    if workspace.exists():
         print(f"\n📁 工作区文件:")
         for root, dirs, files in os.walk(workspace):
             for file in files:

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}登录 — Agent Team{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>🔑 登录</h1>
+
+    {% if error %}
+    <div class="alert alert-error">
+        <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <form method="POST" action="/auth/login" class="auth-form">
+        <div class="form-group">
+            <label for="username">用户名</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="输入用户名"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="输入密码"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">登录</button>
+    </form>
+
+    <p class="auth-footer">
+        还没有账号？<a href="/auth/register">立即注册 →</a>
+    </p>
+</div>
+{% endblock %}

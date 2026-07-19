@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Agent Team{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">🤖 Agent Team</a>
+            <div class="nav-links">
+                {% if user %}
+                    <span class="nav-user">{{ user.username }}</span>
+                    <a href="/auth/logout" class="btn btn-sm">登出</a>
+                {% else %}
+                    <a href="/auth/login" class="btn btn-sm">登录</a>
+                    <a href="/auth/register" class="btn btn-sm btn-primary">注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Agent Team — 多智能体协作学习项目</p>
+        </div>
+    </footer>
+</body>
+</html>

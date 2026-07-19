@@ -1,0 +1,3 @@
+[console_scripts]
+agent-cli = agent_team.cli:main
+agent-web = agent_team.web.main:app
